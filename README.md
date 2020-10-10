@@ -1,7 +1,7 @@
 # linuxsetup
 Welcome to my linux setup
 
-This will, at the moment Oct 10 2020, do the following things:
+This will, at the moment Oct 10 2020, do the following things:<br>
 1 - Apply all to do updates. 
 2 - install all default apps which are:
     - Skype

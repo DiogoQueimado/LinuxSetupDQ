@@ -1,7 +1,5 @@
 # linuxsetup<br>
 Welcome to my linux setup<br>
-
-This will, at the moment Oct 10 2020, do the following things:<br>
 1 - Apply all to do updates. <br>
 2 - install all default apps which are:<br>
     - Skype<br>
@@ -17,8 +15,8 @@ This will, at the moment Oct 10 2020, do the following things:<br>
   - Dynamic Panel Transparency <br>
   - Hide Activities Button<br> 
   - Remove Alt+Tab Delay <br>
-    As soon as I learn how to auto install via script I'll update it here<br>
+As soon as I learn how to auto install via script I'll update it here<br>
 5 - Download my Theme and the Change GDM Background.<br>
   - Yaru Colors <br>
   - Change GDM Background<br>
-I think I might be able to also put those script to work automatically and I'll update this as soon as           I can.<br>
+I think I might be able to also put those script to work automatically and I'll update this as soon as I can.<br>

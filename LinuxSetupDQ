@@ -1,23 +1,24 @@
 #!/bin/bash
 
-PS3='Escolha uma Opção: '
-options=("Updates" "Aplicações" "Tweaks" "Temas" "Imagem de fundo de Login" "Tudo" "Sair" "Sobre")
-select opt in "${options[@]}"
+
+PS3='Choose an Option: 1-8' #Shows top of menu
+options=("Updates" "Software" "Tweaks" "Themes" "Login Background Image" "All" "Quit" "About") # As opcoes do menu
+select opt in "${options[@]}" #le as opcoes possiveis 
 do
-    case $opt in
+    case $opt in # 
         "Updates")
-       wget -q --tries=10 --timeout=20 --spider http://google.com
-	if [[ $? -eq 0 ]]; then
-		 echo 'Ligação à Internet estabelecida com sucesso'
-		 if  sudo apt-get update -y && sudo apt-get upgrade -y; 		    
+       wget -q --tries=10 --timeout=20 --spider http://google.com # Teste de ligação à internet 
+	if [[ $? -eq 0 ]]; then # if para saber o resultado e se for positivo o programa avança, se for negativo ele para
+		 echo 'Internet connection successfully established'
+		 if  sudo apt-get update -y && sudo apt-get upgrade -y; #Fazer os updates	    
         then
-    	    	printf 'Updates Concluidos.\n'
+    	    	printf 'Updates Completed with success.\n'
 	    		else
-    	    			printf 'Updates falharam.\n'
+    	    			printf 'Failed to Update.\n'
 	fi
 	
 	else
-		echo "Não há conexão há internet. Tente mais tarde"
+		echo "There is no internet connection. Try later"
 		break;
 		
 		
@@ -25,18 +26,23 @@ do
        
             
             ;;
-        "Aplicações")
-         wget -q --tries=10 --timeout=20 --spider http://google.com
-	if [[ $? -eq 0 ]]; then
-		 echo 'Ligação à Internet estabelecida com sucesso'
-		 if sudo apt install skype obs-studio conky mpv  pavucontrol git -y
+        "Software")
+         wget -q --tries=10 --timeout=20 --spider http://google.com # Teste de ligação à internet 
+	if [[ $? -eq 0 ]]; then # if para saber o resultado e se for positivo o programa avança, se for negativo ele para
+		 echo 'Internet connection successfully established'
+		 if sudo apt install obs-studio conky mpv  pavucontrol git -y #instalação dos diversos programas 
+		 wget -O ~/skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
+		 dpkg -i ~/skype.deb
 	  then 
-          	printf ' Aplicações instaladas com sucesso.\n'
+          	printf ' Software successfully installed.\n'
+          	echo 'Copy and paste conky.conf to folder etc/conky/'
+          	
+          	read -n 1 -s -r -p " " #Espera por qualquer tecla para continuar
           		else
-          			printf 'Uma ou Mais Aplicações não foram instaladas.\n'
+          			printf 'One or more aplications were not installed.\n'
        fi
 		 else 
-		echo "Não há conexão há internet. Tente mais tarde"
+		echo "There is no internet connection. Try later"
 		break;
        
 	fi
@@ -45,81 +51,82 @@ do
         
          wget -q --tries=10 --timeout=20 --spider http://google.com
 	if [[ $? -eq 0 ]]; then
-		 echo 'Ligação à Internet estabelecida com sucesso'
+		 echo 'Internet connection successfully established'
 		  if sudo apt install gnome-tweak-tool -y
           then
-          	printf 'Aplicação instalada com sucesso.\n' 
-          	            printf "Terá de instalar manualmente a extensao do Gnome Shell Extension no FireFox \n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay "
+          	printf 'Aplication successfully installed.\n' 
+          	            printf "You'll have to install gnome extention shell on firefox and add the following extentions\n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay"
 				echo  # Isto ira mover o proximo texto para a proxima linha.
-				read -n 1 -s -r -p " "
+				read -n 1 -s -r -p " " #Espera por qualquer tecla para continuar
           		else 
-          			printf 'Gnome Tweak Tool falhou a ser instalado.\n'
+          			printf 'Gnome Tweak Tool failed to install.\n'
           fi
 		 else 
-		echo "Não há conexão há internet. Tente mais tarde"
+		echo "There is no internet connection. Try later"
 		break;
 		fi
             ;;
-        "Temas")
+        "Themes")
          wget -q --tries=10 --timeout=20 --spider http://google.com
 	if [[ $? -eq 0 ]]; then
-		 echo 'Ligação à Internet estabelecida com sucesso'
+		 echo 'Internet connection successfully established'
 		    cd Downloads
           if git clone https://github.com/Jannomag/Yaru-Colors.git
             then 
-                 printf 'Download feito com sucesso.\n'
+                 printf 'Download completed successfuly.\n'
                  	elif sudo apt install git && git clone https://github.com/Jannomag/Yaru-Colors.git
                  	then
-                 		printf 'Instalação de Git e Download feito com sucesso\n'
+                 		printf 'Git successfully Downloaded and Installed\nOne or more files successfully Donwloaded.'
                  			else 
-                 				printf 'O Download falhou.\n'
+                 				printf 'Download Failed.\n'
          fi
 	cd
            
 		 else 
-		echo "Não há conexão há internet. Tente mais tarde"
+		echo "There is no internet connection. Try later"
 		break;
 		fi
           ;;
-        "Imagem de fundo de Login")
+        "Login Background Image")
          wget -q --tries=10 --timeout=20 --spider http://google.com
 	if [[ $? -eq 0 ]]; then
-		 echo 'Ligação à Internet estabelecida com sucesso'
+		 echo 'Internet connection successfully established'
 		 cd Downloads
         if sudo apt install libglib2.0-dev-bin -y 
           then 
-          	printf'Libglib2.0-dev-bin Instalado com sucesso\n'
+          	printf'Libglib2.0-dev-bin successfully installed\n'
           	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
             then 
-                 printf 'Download do Change GDM Background feito com sucesso.\n'
+                 printf 'Change GDM Background successfully Downloaded.\n'
                  	elif sudo apt install git && git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
                  	then
-                 		printf'Instalação de Git e Clone feito com sucesso\n'
+                 		printf'Git Installation and Cloning successfuly completed\n'
+                 		 
                  			else 
-                 				printf'Download Falhou\n'
+                 				printf'Failed to Download\n'
                fi
           	      		else 
-          			printf'Download falhou\n'
+          			printf'Failed to Download\\n'
        fi
 	cd Downloads/ubuntu-20.04-change-gdm-background-master
 	chmod +x ubuntu-20.04-change-gdm-background
 	cd
 
 		 else 
-		echo "Não há conexão há internet. Tente mais tarde"
+		echo "There is no internet connection. Try later"
 		
 		break;
 		fi
                     ;;  
-        "Tudo")
+        "All")
          wget -q --tries=10 --timeout=20 --spider http://google.com
 	if [[ $? -eq 0 ]]; then
-		 echo 'Ligação à Internet estabelecida com sucesso'
+		 echo 'Internet connection successfully established'
 		  sudo apt-get update -y 
 	   sudo apt-get upgrade -y
 	   sudo apt install skype obs-studio conky mpv pavucontrol git -y
 	   sudo apt install gnome-tweak-tool -y
-	   printf "Terá de instalar manualmente a extensao do Gnome Shell Extension no FireFox \n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay "
+	   printf "You'll have to install gnome extention shell on firefox and add the following extentions\n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay"
 	   echo  # Isto ira mover o proximo texto para a proxima linha.
 	   read -n 1 -s -r -p " "
 	   cd Downloads
@@ -136,20 +143,22 @@ do
 	   cd
 
 		 else 
-		echo "Não há conexão há internet. Tente mais tarde"
+		echo "There is no internet connection. Try later"
 		break;
 		fi
 		;;
-                  "Sair")
-          printf "Programa feito por Diogo Queimado.\n"
-	   echo  'Prima qualquer tecla para continuar:'
+                  "Quit")
+          printf "Software made by Diogo Queimado.\n"
+	   echo  'Press Any Key To Continue:'
 	   read -n 1 -s -r -p " "
             break;
             ;; 
-        "Sobre")
-        	printf "Programa Feito por Diogo Queimado.\n"
-        	printf "Versão 1.0\n"
+        "About")
+        	printf "Software made by Diogo Queimado\n"
+        	printf "Version 1.0\n"
         	;;
-        *) echo "Opção Invalida, por favor escolha uma opção de 1-8.\n";;
+        *) printf "Invalid Option, please choose an option from 1 to 8.\n"
+   
+            ;;
     esac
 done

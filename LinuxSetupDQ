@@ -1,0 +1,59 @@
+#!/bin/bash
+
+PS3='Escolha uma Opção: '
+options=("Updates" "Aplicações" "Tweaks" "Temas" "Background" "Tudo" "Sair")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Updates")
+             sudo apt-get update -y 
+	     sudo apt-get upgrade -y
+            ;;
+        "Aplicações")
+            sudo apt install skype obs-studio conky mpv pavucontrol git -y
+            ;;
+        "Tweaks")
+            sudo apt install gnome-tweak-tool -y
+            printf "Terá de instalar manualmente a extensao do Gnome Shell Extension no FireFox \n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay "
+echo  # Isto ira mover o proximo texto para a proxima linha.
+read -n 1 -s -r -p " "
+            ;;
+        "Temas")
+            cd Downloads
+	git clone https://github.com/Jannomag/Yaru-Colors.git
+            ;;
+        "Background")
+	    sudo apt install libglib2.0-dev-bin -y
+	
+	git clone  github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
+	cd /home/diogo/Downloads/ubuntu-20.04-change-gdm-background-master
+	chmod +x ubuntu-20.04-change-gdm-background
+	cd
+            ;;  
+        "Tudo")
+           sudo apt-get update -y 
+	   sudo apt-get upgrade -y
+	   sudo apt install skype obs-studio conky mpv pavucontrol git -y
+	   sudo apt install gnome-tweak-tool -y
+	   printf "Terá de instalar manualmente a extensao do Gnome Shell Extension no FireFox \n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay "
+	   echo  # Isto ira mover o proximo texto para a proxima linha.
+	   read -n 1 -s -r -p " "
+	     cd Downloads
+	git clone https://github.com/Jannomag/Yaru-Colors.git
+	   sudo apt install libglib2.0-dev-bin -y
+	
+	git clone  github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
+	   cd Downloads/ubuntu-20.04-change-gdm-background-master
+	   chmod +x ubuntu-20.04-change-gdm-background
+	   cd
+	   cd Downloads/Yaru-Colors-master
+	   ./install.sh
+	   cd
+	   ;;
+        "Sair")
+            break;
+            ;; 
+        *) echo "Opção Invalida $REPLY";;
+    esac
+done
+

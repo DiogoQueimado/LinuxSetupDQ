@@ -2,13 +2,13 @@
 Welcome to my linux setup<br>
 1 - Apply all to do updates. <br>
 2 - install all default apps which are:<br>
-    - Skype<br>
-    - Obs Studio<br>
-    - Conky<br>
-    - MPV<br>
-    - PulseAudio Volume Control<br>
+  - Skype<br>
+  - Obs Studio<br>
+  - Conky<br>
+  - MPV<br>
+  - PulseAudio Volume Control<br>
 3 - Install Tweak apps<br>
-    - Gnome Tweak Tool<br>
+  - Gnome Tweak Tool<br>
 4 - Since I haven't learned how to auto install extension I put an list of needed extensions on the script  which I'll list here.<br>
   - Control Blur Effect On Lock Screen <br>
   - DesktopIcons <br>

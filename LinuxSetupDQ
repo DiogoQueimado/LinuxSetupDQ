@@ -1,45 +1,129 @@
 #!/bin/bash
 
 PS3='Escolha uma Opção: '
-options=("Updates" "Aplicações" "Tweaks" "Temas" "Background" "Tudo" "Sair")
+options=("Updates" "Aplicações" "Tweaks" "Temas" "Imagem de fundo de Login" "Tudo" "Sair" "Sobre")
 select opt in "${options[@]}"
 do
     case $opt in
         "Updates")
-             sudo apt-get update -y 
-	     sudo apt-get upgrade -y
+       wget -q --tries=10 --timeout=20 --spider http://google.com
+	if [[ $? -eq 0 ]]; then
+		 echo 'Ligação à Internet estabelecida com sucesso'
+		 if  sudo apt-get update -y && sudo apt-get upgrade -y; 		    
+        then
+    	    	printf 'Updates Concluidos.\n'
+	    		else
+    	    			printf 'Updates falharam.\n'
+	fi
+	
+	else
+		echo "Não há conexão há internet. Tente mais tarde"
+		break;
+		
+		
+	fi
+       
+            
             ;;
         "Aplicações")
-            sudo apt install skype obs-studio conky mpv pavucontrol git -y
+         wget -q --tries=10 --timeout=20 --spider http://google.com
+	if [[ $? -eq 0 ]]; then
+		 echo 'Ligação à Internet estabelecida com sucesso'
+		 if sudo apt install skype obs-studio conky mpv  pavucontrol git -y
+	  then 
+          	printf ' Aplicações instaladas com sucesso.\n'
+          		else
+          			printf 'Uma ou Mais Aplicações não foram instaladas.\n'
+       fi
+		 else 
+		echo "Não há conexão há internet. Tente mais tarde"
+		break;
+       
+	fi
             ;;
         "Tweaks")
-            sudo apt install gnome-tweak-tool -y
-            printf "Terá de instalar manualmente a extensao do Gnome Shell Extension no FireFox \n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay "
-echo  # Isto ira mover o proximo texto para a proxima linha.
-read -n 1 -s -r -p " "
+        
+         wget -q --tries=10 --timeout=20 --spider http://google.com
+	if [[ $? -eq 0 ]]; then
+		 echo 'Ligação à Internet estabelecida com sucesso'
+		  if sudo apt install gnome-tweak-tool -y
+          then
+          	printf 'Aplicação instalada com sucesso.\n' 
+          	            printf "Terá de instalar manualmente a extensao do Gnome Shell Extension no FireFox \n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay "
+				echo  # Isto ira mover o proximo texto para a proxima linha.
+				read -n 1 -s -r -p " "
+          		else 
+          			printf 'Gnome Tweak Tool falhou a ser instalado.\n'
+          fi
+		 else 
+		echo "Não há conexão há internet. Tente mais tarde"
+		break;
+		fi
             ;;
         "Temas")
-            cd Downloads
-	git clone https://github.com/Jannomag/Yaru-Colors.git
+         wget -q --tries=10 --timeout=20 --spider http://google.com
+	if [[ $? -eq 0 ]]; then
+		 echo 'Ligação à Internet estabelecida com sucesso'
+		    cd Downloads
+          if git clone https://github.com/Jannomag/Yaru-Colors.git
+            then 
+                 printf 'Download feito com sucesso.\n'
+                 	elif sudo apt install git && git clone https://github.com/Jannomag/Yaru-Colors.git
+                 	then
+                 		printf 'Instalação de Git e Download feito com sucesso\n'
+                 			else 
+                 				printf 'O Download falhou.\n'
+         fi
 	cd
-            ;;
-        "Background")
-	    sudo apt install libglib2.0-dev-bin -y
-	
-	git clone  github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
-	cd /home/diogo/Downloads/ubuntu-20.04-change-gdm-background-master
+           
+		 else 
+		echo "Não há conexão há internet. Tente mais tarde"
+		break;
+		fi
+          ;;
+        "Imagem de fundo de Login")
+         wget -q --tries=10 --timeout=20 --spider http://google.com
+	if [[ $? -eq 0 ]]; then
+		 echo 'Ligação à Internet estabelecida com sucesso'
+		 cd Downloads
+        if sudo apt install libglib2.0-dev-bin -y 
+          then 
+          	printf'Libglib2.0-dev-bin Instalado com sucesso\n'
+          	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
+            then 
+                 printf 'Download do Change GDM Background feito com sucesso.\n'
+                 	elif sudo apt install git && git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
+                 	then
+                 		printf'Instalação de Git e Clone feito com sucesso\n'
+                 			else 
+                 				printf'Download Falhou\n'
+               fi
+          	      		else 
+          			printf'Download falhou\n'
+       fi
+	cd Downloads/ubuntu-20.04-change-gdm-background-master
 	chmod +x ubuntu-20.04-change-gdm-background
 	cd
-            ;;  
+
+		 else 
+		echo "Não há conexão há internet. Tente mais tarde"
+		
+		break;
+		fi
+                    ;;  
         "Tudo")
-           sudo apt-get update -y 
+         wget -q --tries=10 --timeout=20 --spider http://google.com
+	if [[ $? -eq 0 ]]; then
+		 echo 'Ligação à Internet estabelecida com sucesso'
+		  sudo apt-get update -y 
 	   sudo apt-get upgrade -y
 	   sudo apt install skype obs-studio conky mpv pavucontrol git -y
 	   sudo apt install gnome-tweak-tool -y
 	   printf "Terá de instalar manualmente a extensao do Gnome Shell Extension no FireFox \n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay "
 	   echo  # Isto ira mover o proximo texto para a proxima linha.
 	   read -n 1 -s -r -p " "
-	     cd Downloads
+	   cd Downloads
+	   sudo apt install git
 	git clone https://github.com/Jannomag/Yaru-Colors.git
 	   sudo apt install libglib2.0-dev-bin -y
 	
@@ -50,10 +134,22 @@ read -n 1 -s -r -p " "
 	   cd Downloads/Yaru-Colors-master
 	   ./install.sh
 	   cd
-	   ;;
-        "Sair")
+
+		 else 
+		echo "Não há conexão há internet. Tente mais tarde"
+		break;
+		fi
+		;;
+                  "Sair")
+          printf "Programa feito por Diogo Queimado.\n"
+	   echo  'Prima qualquer tecla para continuar:'
+	   read -n 1 -s -r -p " "
             break;
             ;; 
-        *) echo "Opção Invalida $REPLY";;
+        "Sobre")
+        	printf "Programa Feito por Diogo Queimado.\n"
+        	printf "Versão 1.0\n"
+        	;;
+        *) echo "Opção Invalida, por favor escolha uma opção de 1-8.\n";;
     esac
 done

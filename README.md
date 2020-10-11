@@ -19,4 +19,5 @@ As soon as I learn how to auto install via script I'll update it here<br>
 5 - Download my Theme and the Change GDM Background.<br>
   - Yaru Colors <br>
   - Change GDM Background<br>
-I think I might be able to also put those script to work automatically and I'll update this as soon as I can.<br>
+The Yaru Themes will iniciate after downloading. 
+All Option that require internet connection will check the computer connection after you choose an option but before anything is done and the program will close if there isn't an internet connection

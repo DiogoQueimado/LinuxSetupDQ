@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-PS3='Choose an Option: 1-8' #Shows top of menu
+PS3='Choose an Option:' #Shows top of menu
 options=("Updates" "Software" "Tweaks" "Themes" "Login Background Image" "All" "Quit" "About") # As opcoes do menu
 select opt in "${options[@]}" #le as opcoes possiveis 
 do
@@ -155,7 +155,7 @@ do
             ;; 
         "About")
         	printf "Software made by Diogo Queimado\n"
-        	printf "Version 1.0\n"
+        	printf "Version 1.1\n"
         	;;
         *) printf "Invalid Option, please choose an option from 1 to 8.\n"
    

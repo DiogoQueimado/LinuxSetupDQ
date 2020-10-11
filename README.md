@@ -1,4 +1,4 @@
-# linuxsetup<br>
+# LinuxSetupDQ<br>
 Welcome to my linux setup<br>
 1 - Apply all to do updates. <br>
 2 - install all default apps which are:<br>

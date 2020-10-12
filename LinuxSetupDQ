@@ -95,18 +95,22 @@ do
         "Login Background Image")
          wget -q --tries=10 --timeout=20 --spider http://google.com
 	if [[ $? -eq 0 ]]; then
-		 echo 'Internet connection successfully established'
+		 echo "Internet connection successfully established"
 		 cd
 		 cd Downloads
         if sudo apt install libglib2.0-dev-bin -y # Este script precisa de um lib proprio para funcionar entao tenho que fazer download 
           then 
-          	printf'Libglib2.0-dev-bin successfully installed\n'
-          	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background # Fazer Clone do git para o script necessario
+          	printf 'Libglib2.0-dev-bin successfully installed\n'
+          	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background # Fazer Clone do git para o script necessario
+          	cd ubuntu-20.04-change-gdm-background
+          echo "Please insert image location to use with Ubuntu Change GDM Background"
+	   read loc
+	   sudo ./ubuntu-20.04-change-gdm-background $loc 
             then 
                  printf 'Change GDM Background successfully Downloaded.\n'
                  	elif sudo apt install git && git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background # tentar instalar o git caso o passo anterior falhe e voltar a tentar instalar 
                  	then
-                 		printf'Git Installation and Cloning successfuly completed\n'
+                 		printf 'Git Installation and Cloning successfuly completed\n'
                  		 
                  			else 
                  				printf'Failed to Download\n'
@@ -142,9 +146,12 @@ do
 		git clone https://github.com/Jannomag/Yaru-Colors.git
 	   sudo apt install libglib2.0-dev-bin -y
 	
-	git clone  github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
-	   cd ubuntu-20.04-change-gdm-background-master
+	git clone  https://github.com/thiggy01/ubuntu-20.04-change-gdm-background.git
+	   cd ubuntu-20.04-change-gdm-background
 	   chmod +x ubuntu-20.04-change-gdm-background
+	   echo "Please insert image location to use with Ubuntu Change GDM Background"
+	   read loc
+	   sudo ./ubuntu-20.04-change-gdm-background $loc 
 	   cd ..
 	   cd Yaru-Colors
 	   ./install.sh
@@ -163,7 +170,7 @@ do
             ;; 
         "About")
         	printf "Software made by Diogo Queimado\n"
-        	printf "Version 1.2\n"
+        	printf "Version 1.3\n"
         	;;
         *) printf "Invalid Option, please choose an option from 1 to 8.\n"
    

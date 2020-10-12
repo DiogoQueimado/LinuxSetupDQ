@@ -32,7 +32,7 @@ do
 		 echo 'Internet connection successfully established'
 		 if sudo apt install obs-studio conky mpv  pavucontrol git -y #instalação dos diversos programas 
 		 wget -O ~/skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
-		 dpkg -i ~/skype.deb
+		 sudo dpkg -i ~/skype.deb
 	  then 
           	printf ' Software successfully installed.\n'
           	echo 'Copy and paste conky.conf to folder etc/conky/'
@@ -130,7 +130,9 @@ do
 		 echo 'Internet connection successfully established'
 		  sudo apt-get update -y 
 	   sudo apt-get upgrade -y
-	   sudo apt install skype obs-studio conky mpv pavucontrol git -y
+	   sudo apt install obs-studio conky mpv pavucontrol git -y
+	   wget -O ~/skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
+	   sudo dpkg -i ~/skype.deb
 	   sudo apt install gnome-tweak-tool -y
 	   printf "You'll have to install gnome extention shell on firefox and add the following extentions\n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay"
 	   echo  # Isto ira mover o proximo texto para a proxima linha.
@@ -161,7 +163,7 @@ do
             ;; 
         "About")
         	printf "Software made by Diogo Queimado\n"
-        	printf "Version 1.1\n"
+        	printf "Version 1.2\n"
         	;;
         *) printf "Invalid Option, please choose an option from 1 to 8.\n"
    

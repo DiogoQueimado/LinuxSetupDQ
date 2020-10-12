@@ -115,7 +115,7 @@ do
           	      		else 
           			printf'Failed to Download\\n'
        fi
-	cd ubuntu-20.04-change-gdm-background-master
+	cd ubuntu-20.04-change-gdm-background
 	chmod +x ubuntu-20.04-change-gdm-background # Change in permission so that we can execute the file via terminal
 	echo "Please insert image location to use with Ubuntu Change GDM Background"
 	   read loc

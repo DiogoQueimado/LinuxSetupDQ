@@ -70,13 +70,18 @@ do
          wget -q --tries=10 --timeout=20 --spider http://google.com
 	if [[ $? -eq 0 ]]; then
 		 echo 'Internet connection successfully established'
+		    cd
 		    cd Downloads
-          if git clone https://github.com/Jannomag/Yaru-Colors.git
+          if git clone https://github.com/Jannomag/Yaru-Colors.git # Clonar o Yaru-Colors, tema que eu uso no meu pc
             then 
                  printf 'Download completed successfuly.\n'
-                 	elif sudo apt install git && git clone https://github.com/Jannomag/Yaru-Colors.git
+                 		cd Yaru-Colors
+                 	  	./install.sh
+                 	elif sudo apt install git && git clone https://github.com/Jannomag/Yaru-Colors.git # caso o passo anterior falhe o programa vai tentar instalar o git para fazer o download
                  	then
                  		printf 'Git successfully Downloaded and Installed\nOne or more files successfully Donwloaded.'
+                 				   cd Yaru-Colors
+						   ./install.sh
                  			else 
                  				printf 'Download Failed.\n'
          fi
@@ -91,14 +96,15 @@ do
          wget -q --tries=10 --timeout=20 --spider http://google.com
 	if [[ $? -eq 0 ]]; then
 		 echo 'Internet connection successfully established'
+		 cd
 		 cd Downloads
-        if sudo apt install libglib2.0-dev-bin -y 
+        if sudo apt install libglib2.0-dev-bin -y # Este script precisa de um lib proprio para funcionar entao tenho que fazer download 
           then 
           	printf'Libglib2.0-dev-bin successfully installed\n'
-          	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
+          	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background # Fazer Clone do git para o script necessario
             then 
                  printf 'Change GDM Background successfully Downloaded.\n'
-                 	elif sudo apt install git && git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
+                 	elif sudo apt install git && git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background # tentar instalar o git caso o passo anterior falhe e voltar a tentar instalar 
                  	then
                  		printf'Git Installation and Cloning successfuly completed\n'
                  		 
@@ -108,8 +114,8 @@ do
           	      		else 
           			printf'Failed to Download\\n'
        fi
-	cd Downloads/ubuntu-20.04-change-gdm-background-master
-	chmod +x ubuntu-20.04-change-gdm-background
+	cd ubuntu-20.04-change-gdm-background-master
+	chmod +x ubuntu-20.04-change-gdm-background # alteracao da permissao no ficheiro sh para que possa ser corrido como um programa
 	cd
 
 		 else 
@@ -131,14 +137,14 @@ do
 	   read -n 1 -s -r -p " "
 	   cd Downloads
 	   sudo apt install git
-	git clone https://github.com/Jannomag/Yaru-Colors.git
+		git clone https://github.com/Jannomag/Yaru-Colors.git
 	   sudo apt install libglib2.0-dev-bin -y
 	
 	git clone  github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background
-	   cd Downloads/ubuntu-20.04-change-gdm-background-master
+	   cd ubuntu-20.04-change-gdm-background-master
 	   chmod +x ubuntu-20.04-change-gdm-background
-	   cd
-	   cd Downloads/Yaru-Colors-master
+	   cd ..
+	   cd Yaru-Colors
 	   ./install.sh
 	   cd
 

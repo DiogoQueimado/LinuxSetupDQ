@@ -35,9 +35,7 @@ do
 		 sudo dpkg -i ~/skype.deb
 	  then 
           	printf ' Software successfully installed.\n'
-          	echo 'Copy and paste conky.conf to folder etc/conky/'
-          	
-          	read -n 1 -s -r -p " " #Waiting for input to continue
+          	sudo cp  LinuxSetupDQ/conky.conf /etc/conky/conky.conf 
           		else
           			printf 'One or more aplications were not installed.\n'
        fi
@@ -137,6 +135,7 @@ do
 	   sudo apt install obs-studio conky mpv pavucontrol git -y
 	   wget -O ~/skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
 	   sudo dpkg -i ~/skype.deb
+	   sudo cp  LinuxSetupDQ/conky.conf /etc/conky/conky.conf 
 	   sudo apt install gnome-tweak-tool -y
 	   printf "You'll have to install gnome extention shell on firefox and add the following extentions\n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay"
 	   echo  # This will make text go to next line

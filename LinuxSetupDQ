@@ -2,15 +2,15 @@
 
 
 PS3='Choose an Option:' #Shows top of menu
-options=("Updates" "Software" "Tweaks" "Themes" "Login Background Image" "All" "Quit" "About") # As opcoes do menu
-select opt in "${options[@]}" #le as opcoes possiveis 
+options=("Updates" "Software" "Tweaks" "Themes" "Login Background Image" "All" "Quit" "About") # Shows menu options
+select opt in "${options[@]}" #read possible options
 do
-    case $opt in # 
+    case $opt in 
         "Updates")
-       wget -q --tries=10 --timeout=20 --spider http://google.com # Teste de ligação à internet 
-	if [[ $? -eq 0 ]]; then # if para saber o resultado e se for positivo o programa avança, se for negativo ele para
+       wget -q --tries=10 --timeout=20 --spider http://google.com # Internet connection test
+	if [[ $? -eq 0 ]]; then # if the internet connection is successful the program continues if it fails it stops
 		 echo 'Internet connection successfully established'
-		 if  sudo apt-get update -y && sudo apt-get upgrade -y; #Fazer os updates	    
+		 if  sudo apt-get update -y && sudo apt-get upgrade -y; #Doing the updates 	    
         then
     	    	printf 'Updates Completed with success.\n'
 	    		else
@@ -27,17 +27,17 @@ do
             
             ;;
         "Software")
-         wget -q --tries=10 --timeout=20 --spider http://google.com # Teste de ligação à internet 
-	if [[ $? -eq 0 ]]; then # if para saber o resultado e se for positivo o programa avança, se for negativo ele para
+         wget -q --tries=10 --timeout=20 --spider http://google.com #  Internet connection test
+	if [[ $? -eq 0 ]]; then #  if the internet connection is successful the program continues if it fails it stops
 		 echo 'Internet connection successfully established'
-		 if sudo apt install obs-studio conky mpv  pavucontrol git -y #instalação dos diversos programas 
+		 if sudo apt install obs-studio conky mpv  pavucontrol git -y #Installation of several programs skype is a bit more complicated so it takes more space
 		 wget -O ~/skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
 		 sudo dpkg -i ~/skype.deb
 	  then 
           	printf ' Software successfully installed.\n'
           	echo 'Copy and paste conky.conf to folder etc/conky/'
           	
-          	read -n 1 -s -r -p " " #Espera por qualquer tecla para continuar
+          	read -n 1 -s -r -p " " #Waiting for input to continue
           		else
           			printf 'One or more aplications were not installed.\n'
        fi
@@ -56,8 +56,8 @@ do
           then
           	printf 'Aplication successfully installed.\n' 
           	            printf "You'll have to install gnome extention shell on firefox and add the following extentions\n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay"
-				echo  # Isto ira mover o proximo texto para a proxima linha.
-				read -n 1 -s -r -p " " #Espera por qualquer tecla para continuar
+				echo  # Makes the text go down a line
+				read -n 1 -s -r -p " " #Waiting for input to continue
           		else 
           			printf 'Gnome Tweak Tool failed to install.\n'
           fi
@@ -72,12 +72,12 @@ do
 		 echo 'Internet connection successfully established'
 		    cd
 		    cd Downloads
-          if git clone https://github.com/Jannomag/Yaru-Colors.git # Clonar o Yaru-Colors, tema que eu uso no meu pc
+          if git clone https://github.com/Jannomag/Yaru-Colors.git # It downloads Yaru-Colors which is a theme a use 
             then 
                  printf 'Download completed successfuly.\n'
                  		cd Yaru-Colors
                  	  	./install.sh
-                 	elif sudo apt install git && git clone https://github.com/Jannomag/Yaru-Colors.git # caso o passo anterior falhe o programa vai tentar instalar o git para fazer o download
+                 	elif sudo apt install git && git clone https://github.com/Jannomag/Yaru-Colors.git # if the previous try fails it will try to install git and re download the files
                  	then
                  		printf 'Git successfully Downloaded and Installed\nOne or more files successfully Donwloaded.'
                  				   cd Yaru-Colors
@@ -98,17 +98,14 @@ do
 		 echo "Internet connection successfully established"
 		 cd
 		 cd Downloads
-        if sudo apt install libglib2.0-dev-bin -y # Este script precisa de um lib proprio para funcionar entao tenho que fazer download 
+        if sudo apt install libglib2.0-dev-bin -y # this script need a specific lib to continue so we need to download it
           then 
           	printf 'Libglib2.0-dev-bin successfully installed\n'
-          	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background # Fazer Clone do git para o script necessario
-          	cd ubuntu-20.04-change-gdm-background
-          echo "Please insert image location to use with Ubuntu Change GDM Background"
-	   read loc
-	   sudo ./ubuntu-20.04-change-gdm-background $loc 
+          	if git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background # Download the files from github 
+          
             then 
                  printf 'Change GDM Background successfully Downloaded.\n'
-                 	elif sudo apt install git && git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background # tentar instalar o git caso o passo anterior falhe e voltar a tentar instalar 
+                 	elif sudo apt install git && git clone https://github.com/thiggy01/ubuntu-20.04-change-gdm-background/raw/master/ubuntu-20.04-change-gdm-background #if the previous try fails it will try to install git and re download the files
                  	then
                  		printf 'Git Installation and Cloning successfuly completed\n'
                  		 
@@ -119,7 +116,10 @@ do
           			printf'Failed to Download\\n'
        fi
 	cd ubuntu-20.04-change-gdm-background-master
-	chmod +x ubuntu-20.04-change-gdm-background # alteracao da permissao no ficheiro sh para que possa ser corrido como um programa
+	chmod +x ubuntu-20.04-change-gdm-background # Change in permission so that we can execute the file via terminal
+	echo "Please insert image location to use with Ubuntu Change GDM Background"
+	   read loc
+	   sudo ./ubuntu-20.04-change-gdm-background $loc 
 	cd
 
 		 else 
@@ -139,8 +139,8 @@ do
 	   sudo dpkg -i ~/skype.deb
 	   sudo apt install gnome-tweak-tool -y
 	   printf "You'll have to install gnome extention shell on firefox and add the following extentions\n - Control Blur Effect On Lock Screen \n - DesktopIcons \n - Dynamic Panel Transparency \n - Hide Activities Button \n - Remove Alt+Tab Delay"
-	   echo  # Isto ira mover o proximo texto para a proxima linha.
-	   read -n 1 -s -r -p " "
+	   echo  # This will make text go to next line
+	   read -n 1 -s -r -p " " #Waiting for user input
 	   cd Downloads
 	   sudo apt install git
 		git clone https://github.com/Jannomag/Yaru-Colors.git
@@ -148,7 +148,7 @@ do
 	
 	git clone  https://github.com/thiggy01/ubuntu-20.04-change-gdm-background.git
 	   cd ubuntu-20.04-change-gdm-background
-	   chmod +x ubuntu-20.04-change-gdm-background
+	   chmod +x ubuntu-20.04-change-gdm-background #change of permission so we can execute file in terminal
 	   echo "Please insert image location to use with Ubuntu Change GDM Background"
 	   read loc
 	   sudo ./ubuntu-20.04-change-gdm-background $loc 

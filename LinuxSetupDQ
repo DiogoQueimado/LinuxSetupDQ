@@ -117,7 +117,7 @@ do
 	chmod +x ubuntu-20.04-change-gdm-background # Change in permission so that we can execute the file via terminal
 	echo "Please insert image location to use with Ubuntu Change GDM Background"
 	   read loc
-	   sudo ./ubuntu-20.04-change-gdm-background $loc 
+	   sudo ./change-gdm-background $loc 
 	cd
 
 		 else 
